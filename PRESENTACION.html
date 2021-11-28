@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>PRESENTACION.knit</title>
+    <meta charset="utf-8" />
+    <script src="PRESENTACION_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="PRESENTACION_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="PRESENTACION_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="PRESENTACION_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <link href="PRESENTACION_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="PRESENTACION_files/datatables-binding-0.20/datatables.js"></script>
+    <script src="PRESENTACION_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link href="PRESENTACION_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="PRESENTACION_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="PRESENTACION_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+    <link href="PRESENTACION_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="PRESENTACION_files/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse
+
+&lt;img  src="logo.png"
+width="250px"
+/&gt;
+
+# COMPARACIÓN ENTRE APPLE Y SAMSUNG A TRAVÉS DEL TEXT MINING EN TWITTER
+
+## BIG DATA
+### Estudiantes:
+### Fabiola Aguilar - Cristóbal Matamala - Javiera Ramiréz
+### Prof. Mauricio Huerta
+
+---
+class: center, middle
+# **PLANTEAMIENTO DEL PROBLEMA**
+***
+
+
+
+.pull-left[
+.center[&lt;img  src="apple.jpeg"
+width="250px"
+/&gt;]
+]
+
+.pull-right[
+
+.center[&lt;img  src="samsung.jpeg"
+width="310px"
+/&gt;]
+]
+
+## Las empresas Apple y Samsung son competidoras entre sí en algunos de sus productos y se basan principalmente en lo que opinan sus clientes sobre estos. En este estudio se realizará una minería de opiniones o análisis de sentimientos en base a los Tweets de las personas para realizar una comparación entre Apple y Samsung.
+
+---
+class: center, middle
+# **MOTIVACIÓN**
+***
+
+&lt;img style="border-radius: 50%;" src="motivacion.png"
+width="200px"
+/&gt;
+
+## Nos motiva el poder llegar a las opiniones tanto positivas como negativas de los usuarios (en la red social Twitter) sobre las marcas Apple y Samsung para así realizar un análisis comparativo y descriptivo de ellas.
+---
+
+class: center, middle
+
+# **PREGUNTAS DE INVESTIGACIÓN**
+***
+.pull-left[
++ ## ¿Qué marca tiene mayor proporción de opiniones positivas en la red social Twitter?
+
++ ## ¿Cuál es la proporción o porcentaje de opiniones positivas y negativas sobre la marca Apple en la red social Twitter?]
+
+.pull-right[
+
++ ## ¿Qué marca tiene mayor proporción de opiniones negativas en la red social Twitter?
+
++ ## ¿Cuál es la proporción o porcentaje de opiniones positivas y negativas sobre la marca Samsung en la red social Twitter?]
+---
+
+class: center, middle
+
+
+
+# **OBJETIVOS**
+***
+.left-column[
+# **OBJETIVO GENERAL**
+### **Implementar una estrategia para extraer la opinión de los usuarios en Twitter, a través del Text Mining, para poder clasificar los tweets.**
+]
+
+.right-column[
+# OBJETIVOS ESPECIFICOS
+.pull-left[
++ ###Construir un conjunto de datos de la red social Twitter en base a tweets sobre la marca Apple.
++ ###Construir un conjunto de datos de la red social Twitter en base a tweets sobre la marca Samsung.]
+.pull-right[
++ ###Comparar la marca Apple y Samsung basado en Text Mining de la red social Twitter.
++ ###Describir la marca Apple y Samsung basado en Text Mining de la red social Twitter.]
+]
+
+---
+
+class: center, middle
+
+# **ALCANCE DE INVESTIGACIÓN**
+***
+&lt;img style="border-radius: 50%;" src="alcance.jpeg"
+width="200px"
+/&gt;
+
+## Alcance Descriptivo
+
+---
+class: middle
+
+# **HIPÓTESIS DE INVESTIGACIÓN**
+***
+
+
++ ## La marca Apple tiene mayor proporción de opiniones positivas.
+
++ ## En la red social Twitter se encuentran más opiniones positivas que negativas de ambas marcas.
+
++ ## La marca Samsung tiene mayor proporción de opiniones negativas.
+
+
+---
+class: middle
+
+# **RECOPILACIÓN DE DATOS**
+***
++ Utilizamos la librería rtweet que nos permite interactuar con la API de Twitter y extraer los datos
+
+
+```r
+install.packages("rtweet") 
+*library(rtweet)
+```
+
++ Consideramos sólo los tweets en español y no incluimos retweets. _(Ejemplo de Samsung)_
+
+
+```r
+Samsung &lt;- search_tweets("Samsung OR #samsung OR samsung OR #Samsung",
+                                                   n = 3000, 
+*                                       include_rts = FALSE,
+*                                               lang = "es",
+                                    retryonratelimit = TRUE)
+```
+
++ Cantidad de tweets: 17.996 de Apple y 8.819 de Samsung
+
+---
+class: middle
+
+# **RECOPILACIÓN DE DATOS**
+***
++ Los datos obtenidos se ven de la siguiente forma
+
+
+
+<div id="htmlwidget-7d47487def7aafd4bd51" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7d47487def7aafd4bd51">{"x":{"filter":"none","vertical":false,"fillContainer":true,"data":[["1","2","3","4","5","6","7","8","9","10"],["954441538259640320","777966588","1253409942901420034","1253409942901420034","1253409942901420034","1253409942901420034","1253409942901420034","1253409942901420034","1253409942901420034","1253409942901420034"],["1464400436111233033","1464399989900251143","1464399176322588677","1464294483013476359","1464398817831243781","1462633786001149954","1463399173110202374","1462632757910130692","1464398397507399681","1463921099456987141"],["2021-11-27T01:07:25Z","2021-11-27T01:05:39Z","2021-11-27T01:02:25Z","2021-11-26T18:06:24Z","2021-11-27T01:01:00Z","2021-11-22T04:07:23Z","2021-11-24T06:48:46Z","2021-11-22T04:03:18Z","2021-11-27T00:59:19Z","2021-11-25T17:22:43Z"],["Memy_2198","Sabrococo","samsung_jin","samsung_jin","samsung_jin","samsung_jin","samsung_jin","samsung_jin","samsung_jin","samsung_jin"],["Vendo Samsung note 9\n128 GB\n6 GB RAM \nESTADO 9/10 \n290$ negociable https://t.co/tsIw5kZYgM","Gente, me han robado el móvil en barcelona en la parada de passeig de gracia, es un Samsung Galaxy A52s 5G, por favor si sabéis cualquier cosa avisadme","@Elymin136 Aún no me leo el libro :(","@Elymin136 @BTS_twt Esto me esta lastimando😭😭😭😭😭😭😭😭","@Elymin136 @BTS_twt En verdad te quedaron muy bonitos Ely.♡","@Elymin136 Amén.","Flaco me re gustas.🤯\n\n@BTS_twt https://t.co/1PLSZpM0rS","@bts_bighit @AMAs REYES LLA ROMPIERON... ESTOY ORGULLOSA 😭😭😭😭","@Elymin136 @BTS_twt Te quedaron re bonitos😭😭😭","@Incompletelyrcs Me encanta mucho la historia, creo que el final que decidas darle será el adecuado... realmente me encanta, la historia me tiene muy atrapada, y uff la redacción es perfecta.🛐"],["Twitter for Android","Twitter Web App","Twitter for Android","Twitter for Android","Twitter for Android","Twitter for Android","Twitter for Android","Twitter for Android","Twitter for Android","Twitter for Android"],[66,151,25,31,39,5,30,43,25,175],[null,null,"1464398605066907653","1464292479302254596","1464381525961629702","1462633108633706498",null,"1462630412409139205","1464381525961629702","1463918248504737797"],[null,null,"823960937120104448","823960937120104448","823960937120104448","823960937120104448",null,"1409798257","823960937120104448","1535376043"],[null,null,"Elymin136","Elymin136","Elymin136","Elymin136",null,"bts_bighit","Elymin136","Incompletelyrcs"],[false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false],[0,2,0,0,0,0,1,0,0,0],[1,8,0,0,0,0,0,0,0,0],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],["http://pbs.twimg.com/media/FFKYbBbXMAgPrJE.jpg",null,null,null,null,null,"http://pbs.twimg.com/media/FE8JyR2VIAEsnO5.jpg",null,null,null],["https://t.co/tsIw5kZYgM",null,null,null,null,null,"https://t.co/1PLSZpM0rS",null,null,null],["https://twitter.com/Memy_2198/status/1464400436111233033/photo/1",null,null,null,null,null,"https://twitter.com/samsung_jin/status/1463399173110202374/photo/1",null,null,null],["photo",null,null,null,null,null,"photo",null,null,null],[["http://pbs.twimg.com/media/FFKYbBbXMAgPrJE.jpg","http://pbs.twimg.com/media/FFKYbaHX0AUvetQ.jpg","http://pbs.twimg.com/media/FFKYbuhWQAAdJzf.jpg"],null,null,null,null,null,"http://pbs.twimg.com/media/FE8JyR2VIAEsnO5.jpg",null,null,null],[["https://t.co/tsIw5kZYgM","https://t.co/tsIw5kZYgM","https://t.co/tsIw5kZYgM"],null,null,null,null,null,"https://t.co/1PLSZpM0rS",null,null,null],[["https://twitter.com/Memy_2198/status/1464400436111233033/photo/1","https://twitter.com/Memy_2198/status/1464400436111233033/photo/1","https://twitter.com/Memy_2198/status/1464400436111233033/photo/1"],null,null,null,null,null,"https://twitter.com/samsung_jin/status/1463399173110202374/photo/1",null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,"823960937120104448",["823960937120104448","335141638"],["823960937120104448","335141638"],"823960937120104448","335141638",["1409798257","52536879"],["823960937120104448","335141638"],"1535376043"],[null,null,"Elymin136",["Elymin136","BTS_twt"],["Elymin136","BTS_twt"],"Elymin136","BTS_twt",["bts_bighit","AMAs"],["Elymin136","BTS_twt"],"Incompletelyrcs"],["es","es","es","es","es","es","es","es","es","es"],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null]],[[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null]],[[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]],["https://twitter.com/Memy_2198/status/1464400436111233033","https://twitter.com/Sabrococo/status/1464399989900251143","https://twitter.com/samsung_jin/status/1464399176322588677","https://twitter.com/samsung_jin/status/1464294483013476359","https://twitter.com/samsung_jin/status/1464398817831243781","https://twitter.com/samsung_jin/status/1462633786001149954","https://twitter.com/samsung_jin/status/1463399173110202374","https://twitter.com/samsung_jin/status/1462632757910130692","https://twitter.com/samsung_jin/status/1464398397507399681","https://twitter.com/samsung_jin/status/1463921099456987141"],["Emely Altamirano💫","Turbopatater Dungeons &amp; Sabrons","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣","𝚂𝚊𝚖𝚜𝚞𝚗𝚐_𝚓𝚒𝚗⁷ 𝙺𝚂𝙹𝟷🍎🐣"],["","Puerto Hurraco","Magic Shop - LTB","Magic Shop - LTB","Magic Shop - LTB","Magic Shop - LTB","Magic Shop - LTB","Magic Shop - LTB","Magic Shop - LTB","Magic Shop - LTB"],["1998🎢","✨ Furby con cuchillo opina sobre cosas y hace shitposting ✨ Doy los buenos días ✨ Cualquier pronombre 🏳️‍🌈🏳️‍⚧️ ✨ De hiatus en twich ✨ https://t.co/t15uY2l3Yb","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃","𝙹𝚒𝚖𝚝𝚘𝚋𝚎𝚛🐣🎃"],[null,"https://t.co/rtBn8NhXzO",null,null,null,null,null,null,null,null],[false,false,false,false,false,false,false,false,false,false],[229,5429,31,31,31,31,31,31,31,31],[165,616,490,490,490,490,490,490,490,490],[0,60,0,0,0,0,0,0,0,0],[4823,112847,5269,5269,5269,5269,5269,5269,5269,5269],[909,186949,16845,16845,16845,16845,16845,16845,16845,16845],["2018-01-19T19:52:50Z","2012-08-24T11:24:00Z","2020-04-23T19:46:56Z","2020-04-23T19:46:56Z","2020-04-23T19:46:56Z","2020-04-23T19:46:56Z","2020-04-23T19:46:56Z","2020-04-23T19:46:56Z","2020-04-23T19:46:56Z","2020-04-23T19:46:56Z"],[false,false,false,false,false,false,false,false,false,false],[null,"https://t.co/rtBn8NhXzO",null,null,null,null,null,null,null,null],[null,"https://linktr.ee/sabrococo",null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,"https://pbs.twimg.com/profile_banners/777966588/1619186207","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536","https://pbs.twimg.com/profile_banners/1253409942901420034/1637904536"],["http://abs.twimg.com/images/themes/theme1/bg.png","http://abs.twimg.com/images/themes/theme1/bg.png",null,null,null,null,null,null,null,null],["http://pbs.twimg.com/profile_images/1459010989614108672/ZVfwQqBE_normal.jpg","http://pbs.twimg.com/profile_images/1367246682044391427/VN_sk48F_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg","http://pbs.twimg.com/profile_images/1464103856267096066/U5-seDFK_normal.jpg"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>user_id<\/th>\n      <th>status_id<\/th>\n      <th>created_at<\/th>\n      <th>screen_name<\/th>\n      <th>text<\/th>\n      <th>source<\/th>\n      <th>display_text_width<\/th>\n      <th>reply_to_status_id<\/th>\n      <th>reply_to_user_id<\/th>\n      <th>reply_to_screen_name<\/th>\n      <th>is_quote<\/th>\n      <th>is_retweet<\/th>\n      <th>favorite_count<\/th>\n      <th>retweet_count<\/th>\n      <th>quote_count<\/th>\n      <th>reply_count<\/th>\n      <th>hashtags<\/th>\n      <th>symbols<\/th>\n      <th>urls_url<\/th>\n      <th>urls_t.co<\/th>\n      <th>urls_expanded_url<\/th>\n      <th>media_url<\/th>\n      <th>media_t.co<\/th>\n      <th>media_expanded_url<\/th>\n      <th>media_type<\/th>\n      <th>ext_media_url<\/th>\n      <th>ext_media_t.co<\/th>\n      <th>ext_media_expanded_url<\/th>\n      <th>ext_media_type<\/th>\n      <th>mentions_user_id<\/th>\n      <th>mentions_screen_name<\/th>\n      <th>lang<\/th>\n      <th>quoted_status_id<\/th>\n      <th>quoted_text<\/th>\n      <th>quoted_created_at<\/th>\n      <th>quoted_source<\/th>\n      <th>quoted_favorite_count<\/th>\n      <th>quoted_retweet_count<\/th>\n      <th>quoted_user_id<\/th>\n      <th>quoted_screen_name<\/th>\n      <th>quoted_name<\/th>\n      <th>quoted_followers_count<\/th>\n      <th>quoted_friends_count<\/th>\n      <th>quoted_statuses_count<\/th>\n      <th>quoted_location<\/th>\n      <th>quoted_description<\/th>\n      <th>quoted_verified<\/th>\n      <th>retweet_status_id<\/th>\n      <th>retweet_text<\/th>\n      <th>retweet_created_at<\/th>\n      <th>retweet_source<\/th>\n      <th>retweet_favorite_count<\/th>\n      <th>retweet_retweet_count<\/th>\n      <th>retweet_user_id<\/th>\n      <th>retweet_screen_name<\/th>\n      <th>retweet_name<\/th>\n      <th>retweet_followers_count<\/th>\n      <th>retweet_friends_count<\/th>\n      <th>retweet_statuses_count<\/th>\n      <th>retweet_location<\/th>\n      <th>retweet_description<\/th>\n      <th>retweet_verified<\/th>\n      <th>place_url<\/th>\n      <th>place_name<\/th>\n      <th>place_full_name<\/th>\n      <th>place_type<\/th>\n      <th>country<\/th>\n      <th>country_code<\/th>\n      <th>geo_coords<\/th>\n      <th>coords_coords<\/th>\n      <th>bbox_coords<\/th>\n      <th>status_url<\/th>\n      <th>name<\/th>\n      <th>location<\/th>\n      <th>description<\/th>\n      <th>url<\/th>\n      <th>protected<\/th>\n      <th>followers_count<\/th>\n      <th>friends_count<\/th>\n      <th>listed_count<\/th>\n      <th>statuses_count<\/th>\n      <th>favourites_count<\/th>\n      <th>account_created_at<\/th>\n      <th>verified<\/th>\n      <th>profile_url<\/th>\n      <th>profile_expanded_url<\/th>\n      <th>account_lang<\/th>\n      <th>profile_banner_url<\/th>\n      <th>profile_background_url<\/th>\n      <th>profile_image_url<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[7,13,14,15,16,37,38,42,43,44,52,53,57,58,59,78,79,80,81,82]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+---
+class: middle
+
+# **RECOPILACIÓN DE DATOS**
+***
++ Guardamos los datos extraidos en un archivo *.rds*, repitiendo el procedimiento durante 5 días (23-28 nov).
+
+
+```r
+write_rds(samsung,
+          file = file.path("BIG-DATA",
+                          paste0(Sys.Date(),
+                                 "_Samsung.rds")))
+```
+
++ Se leen los datos recopilados y se compilan.
+
+
+```r
+RDS_file_samsung &lt;- grep(list.files(here("BIG-DATA"), full.names = T), pattern = "Samsung", value = T)
+patron           &lt;- "_Samsung.rds"
+directorio       &lt;- here("BIG-DATA")
+
+leer &lt;- function(rds_file, patron, directorio){
+  rds_filename &lt;- gsub(rds_file, pattern = paste0(directorio,"/"), replacement = "")
+  rds_fecha    &lt;- gsub(rds_filename, pattern = patron, replacement = "")
+  readRDS(rds_file) %&gt;%
+    mutate(harvest_date = as.Date(rds_fecha))
+}
+```
+---
+class: middle
+# **RECOPILACIÓN DE DATOS**
+***
+
++ Se unen los datos para trabajarlos de mejor forma.
+
+
+```r
+samsung &lt;- pmap_df(list(RDS_file_samsung,
+                      patron,
+                      directorio),leer)
+```
+
+---
+class: middle
+# **PREPROCESAMIENTO**
+***
+
++ Seleccionamos solo algunas variables que son las que nos interesan.
+
+
+```r
+samsung &lt;- Samsung %&gt;%
+  select(user_id,
+         created_at,
+         text,
+         favorite_count,
+         reply_count,
+         retweet_count,
+         followers_count)
+```
+
++ Renombramos las variables con nombres más prácticos.
+
+
+```r
+samsung &lt;- samsung %&gt;%
+  rename(Autor = user_id,
+         Fecha = created_at,
+         Texto = text,
+         Respuestas = reply_count,
+         Likes = favorite_count,
+         Retweets = retweet_count,
+         Seguidores = followers_count)
+```
+
+---
+class: middle
+# **PREPROCESAMIENTO**
+***
+
++ Se utiliza una función llamada `limpiar_tokenizar` para limpiar los tweets.
+
+
+```r
+  nuevo_Texto &lt;- tolower(Texto)
+  # Eliminación de páginas web 
+  nuevo_Texto &lt;- str_replace_all(nuevo_Texto,"http\\S*", "")
+  # Eliminación de menciones con @
+  nuevo_Texto &lt;- str_replace_all(nuevo_Texto,"@\\S*", "")
+  # Eliminacion de hashtag
+  nuevo_Texto &lt;- str_replace_all(nuevo_Texto,"#\\S*", "")
+  # Eliminación de signos de puntuación
+  nuevo_Texto &lt;- str_replace_all(nuevo_Texto,"[[:punct:]]", " ")
+  # Eliminación de números
+  nuevo_Texto &lt;- str_replace_all(nuevo_Texto,"[[:digit:]]", " ")
+  # Eliminación de espacios en blanco múltiples
+  nuevo_Texto &lt;- str_replace_all(nuevo_Texto,"[\\s]+", " ")
+```
+
+---
+class: middle
+# **PREPROCESAMIENTO**
+***
+
++ Seleccionamos un tweet por usuario, el que tenga más likes (para tweets duplicados).
+
+
+```r
+samsung_nd &lt;- samsungtext %&gt;%
+  arrange(Likes) %&gt;%
+  filter(!duplicated(Texto))
+```
+
++ La cantidad de datos se redujo a 83838 y 838383 para Apple y Samsung respectivamente.
+
++ Creamos un data frame con las palabras que queremos evitar más adelante, en el análisis.
+
+
+```r
+samsung_words &lt;- c("galaxyzflip","galaxy")
+stop_words1   &lt;- data.frame(Palabras = c(stopwords(kind = "es"), samsung_words))
+```
+
+---
+
+class: middle
+# **ANALISIS**
+***
+
++ Se calcula la frecuencia con la que cada autor ocupa una palabra.
+
+
+```r
+freq_words &lt;- samsung_nd %&gt;%
+  unnest_tokens(output = word,
+                input = Texto,
+                token = "words",
+                format = "text") %&gt;%
+  anti_join(stop_words1,by = c("word" = "Palabras")) %&gt;%
+  filter(!(str_length(word) &lt; 3)) %&gt;%
+  count(word)
+```
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "15:8"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
